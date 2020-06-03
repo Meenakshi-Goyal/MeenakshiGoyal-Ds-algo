@@ -40,18 +40,7 @@ public class Conversion {
             System.out.print(binaryNum[j]); 
          
     }
-     static String dectoHex(int n){    
-     int rem;  
-     String hex="";   
-     char hexchars[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};  
-    while(n>0)  
-     {  
-       rem=n%16;   
-       hex=hexchars[rem]+hex;   
-       n=n/16;  
-     }  
-    return hex;  
-}
+     
      public static int hextodeci(String hex){  
     String digits = "0123456789ABCDEF";  
              hex = hex.toUpperCase();  
@@ -64,17 +53,180 @@ public class Conversion {
              }  
              return val;  
 } 
+     private static String octaltohexa(String number) {
+
+		// Convert Octal to Decimal
+		int decimal = octaltodeci(number);
+		// Convert Decimal to Hexadecimal
+		String hexadecimal = Decitohexa(decimal);
+		return hexadecimal;
+	}
+
+	private static String Decitohexa(int decimal) {
+
+		int remainder = 0;
+		StringBuilder hexadecimal = new StringBuilder();
+		String result;
+		while (decimal != 0) {
+			remainder = decimal % 16;
+			if (remainder >= 10 && remainder <= 15) {
+				char hexChar = getHexadecimalCharacter(remainder);
+			
+				result = String.valueOf(hexChar);
+			} else {
+				
+				result = String.valueOf(remainder);
+			}
+			
+			hexadecimal.append(String.valueOf(result));
+			decimal = decimal / 16;
+		}
+
+		
+		return hexadecimal.reverse().toString();
+	}
+
+	private static int octaltodeci(String number) {
+
+		
+		StringBuilder string = new StringBuilder(number);
+		string = string.reverse();
+		int length = string.length();
+		int digit, power, sum = 0;
+		for (int i = 0; i < length; i++) {
+			digit = string.charAt(i) - 48;
+			power = (int) Math.pow(8, i);
+			sum = sum + digit * power;
+		}
+		return sum;
+	}
+
+	
+
+	private static char getHexadecimalCharacter(int remainder) {
+
+		char ch = '\u0000';
+		switch (remainder) {
+		case 10:
+			ch = 'A';
+			break;
+		case 11:
+			ch = 'B';
+			break;
+		case 12:
+			ch = 'C';
+			break;
+		case 13:
+			ch = 'D';
+			break;
+		case 14:
+			ch = 'E';
+			break;
+		case 15:
+			ch = 'F';
+			break;
+		}
+		return ch;
+	}
+        static void decToOctal(int n) 
+    { 
+        
+        int[] octalNum = new int[100]; 
+  
+        int i = 0; 
+        while (n != 0)  
+        { 
+            
+            octalNum[i] = n % 8; 
+            n = n / 8; 
+            i++; 
+        } 
+  
+      
+        for (int j = i - 1; j >= 0; j--) 
+            System.out.print(octalNum[j]); 
+    } 
+        public static int BinarytoOctal(long binaryNumber)
+    {
+        int octalNumber = 0, decimalNumber = 0, i = 0;
+
+        while(binaryNumber != 0)
+        {
+            decimalNumber += (binaryNumber % 10) * Math.pow(2, i);
+            ++i;
+            binaryNumber /= 10;
+        }
+
+        i = 1;
+
+        while (decimalNumber != 0)
+        {
+            octalNumber += (decimalNumber % 8) * i;
+            decimalNumber /= 8;
+            i *= 10;
+        }
+
+        return octalNumber;
+    }
+public static long OctalToBinary(int octalNumber)
+    {
+        int decimalNumber = 0, i = 0;
+        long binaryNumber = 0;
+
+        while(octalNumber != 0)
+        {
+            decimalNumber += (octalNumber % 10) * Math.pow(8, i);
+            ++i;
+            octalNumber/=10;
+        }
+
+        i = 1;
+
+        while (decimalNumber != 0)
+        {
+            binaryNumber += (decimalNumber % 2) * i;
+            decimalNumber /= 2;
+            i *= 10;
+        }
+
+        return binaryNumber;
+    }
+ public static String HexToBinary(String hex) {
+                StringBuilder binStrBuilder = new StringBuilder();
+                int c = 1;
+                for (int i = 0; i < hex.length() - 1; i += 2) {
+
+                        String output = hex.substring(i, (i + 2));
+
+                        int decimal = Integer.parseInt(output, 16);
+
+                        String binStr = Integer.toBinaryString(decimal);
+                        int len = binStr.length();
+                        StringBuilder sbf = new StringBuilder();
+                        if (len < 8) {
+
+                                for (int k = 0; k < (8 - len); k++) {
+                                        sbf.append("0");
+                                }
+                                sbf.append(binStr);
+                        } else {
+                                sbf.append(binStr);
+                        }
+
+                        c++;
+                        binStrBuilder.append(sbf.toString());
+                }
+
+                return binStrBuilder.toString();
+        }
+
+     
+     
+
         public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-    String hex = sc.next();
-    System.out.println(binaryToDecimal(n));
-    decToBinary(n);
-    System.out.println(dectoHex(n));
-    System.out.println(hextodeci(hex));
+    
     
     
     }
     
 }
-
