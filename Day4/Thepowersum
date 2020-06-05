@@ -1,0 +1,12 @@
+static int powerSum(int X, int N, int num)
+     {
+        
+
+        int var = (int)Math.pow(num,N);
+        if(var < X)
+            return powerSum(X,N,num+1) + powerSum(X-var,N,num+1);
+        if(var == X)
+            return 1;
+        else
+            return 0;
+    }
