@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isPalindrome(ListNode head){
+        int count =0;
+        LinkedList ls = new LinkedList();
+        if(head == null)
+            return true;
+        while(head.next !=null){
+            ls.add(head.val);
+            head = head.next;
+            count++;
+            
+        }count++;
+        ls.add(head.val);
+        System.out.println(ls.toString());
+        for(int i = 0;i<count;i++){
+            int a = (Integer)ls.get(i);
+            int b =(Integer)ls.get(count-i-1);
+            if(a!=b)
+                return false;
+        }return true;
+        
+        
+        
+        
+        
+    }
+}
