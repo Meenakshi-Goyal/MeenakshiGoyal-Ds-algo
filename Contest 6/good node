@@ -100,17 +100,17 @@ class lcs {
 	}
 }
 class good{
-public int good(TreeNode root) {
-	return countnodes(root, root.val);
+public int good(Node root) {
+	return countnodes(root, root.data);
 }
 
-private int countnodes(TreeNode node, int max) {
+private int countnodes(Node node, int max) {
 	if (node == null) {
 		return 0;
 	}
 	
 	int count = 0;
-	if (node.val >= max) {
+	if (node.data >= max) {
 		max = node.val;
 		count = 1;
 	}
