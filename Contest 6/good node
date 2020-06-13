@@ -93,18 +93,18 @@ class lcs {
 	            String s = br.readLine();
     	    	Node root = buildTree(s);
                 Tree g = new Tree();
-                Node k = g.goodNodes(root);
+                Node k = g.good(root);
     			System.out.println(k.data);
     	        
 	        }
 	}
 }
 class good{
-public int goodNodes(TreeNode root) {
-	return countGoodNodes(root, root.val);
+public int good(TreeNode root) {
+	return countnodes(root, root.val);
 }
 
-private int countGoodNodes(TreeNode node, int max) {
+private int countnodes(TreeNode node, int max) {
 	if (node == null) {
 		return 0;
 	}
@@ -114,7 +114,7 @@ private int countGoodNodes(TreeNode node, int max) {
 		max = node.val;
 		count = 1;
 	}
-	return count + countGoodNodes(node.left, max) + countGoodNodes(node.right, max);
+	return count + countnodes(node.left, max) + good(node.right, max);
 }
 
 }
