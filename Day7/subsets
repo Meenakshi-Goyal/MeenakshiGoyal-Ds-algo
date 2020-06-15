@@ -1,0 +1,18 @@
+ class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> all = new ArrayList<>();
+        
+        for(int i=0; i<Math.pow(2, nums.length); i++) {
+            List<Integer> r = new ArrayList<>();
+            int p = 1;
+            
+            for(int j=0; j<nums.length; j++) {
+                if ((i & p) > 0) r.add(nums[j]);
+                p <<= 1;
+            }
+            
+            all.add(new ArrayList(r));
+        }
+        return all;
+    }
+}
