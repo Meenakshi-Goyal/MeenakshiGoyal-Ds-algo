@@ -1,0 +1,24 @@
+import java.util.*;
+class Testcases {
+	public static void main (String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+	         String s1=sc.next();            
+		    String s2=sc.next();
+            int[][] arr=new int[s1.length()+1][s2.length()+1]; 
+		    for(int row=s1.length();row>=0;row--){   
+		        for(int col=s2.length();col>=0;col--){    
+		            if(row==s1.length() || col==s2.length()){   
+		                continue;
+		            }
+		            if(s1.charAt(row)==s2.charAt(col)){         
+		                arr[row][col]=arr[row+1][col+1]+1;      
+		            }else{
+		                arr[row][col]=Math.max(arr[row+1][col],arr[row][col+1]);
+		            }
+		        }
+		    }
+		    System.out.println(arr[0][0]);      
+		}
+	
+}
