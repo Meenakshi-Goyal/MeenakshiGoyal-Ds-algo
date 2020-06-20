@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+class Solution {
+    public static int maxProduct(int[] nums) {
+        if(nums.length==0)
+            return 0;
+        if(nums.length==2)
+            return Math.max(nums[0], Math.max (nums[1] , nums[0]*nums[1]));
+        if(nums.length==1)
+            return nums[0];
+        int max = nums[0];
+        int maxn = nums[0];
+        for(int i=1;i<nums.length;i++)
+            maxn = Math.max(maxn , nums[i]);
+        for(int i=0;i<nums.length;i++){
+            int mul=nums[i];
+            for(int j=i+1;j<nums.length;j++){
+                mul = mul*nums[j];
+                max= Math.max(max , mul);
+            }
+        }
+        return Math.max(max , maxn);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int [] nums = new int[n];
+        for(int i=0;i<n;i++)
+            nums[i]=sc.nextInt();
+        System.out.println(maxProduct(nums));
+    }
+}
